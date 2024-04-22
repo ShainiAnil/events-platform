@@ -2,12 +2,20 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const connectDb = require("./config/db");
-const userRoute = require("./routes/user") 
+const userRoute = require("./routes/user"); 
+const eventsRoute = require("./routes/events");
+const categoryRoutes = require("./routes/category");
 require("dotenv").config();
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+
+
 connectDb();
+
 app.use("/api/users", userRoute)
+app.use("/api/events", eventsRoute)
+app.use("/api/categories", categoryRoutes)
+
 app.all("*", (req, res) => {
    res.status(404).json("This page does not exist");
 });
