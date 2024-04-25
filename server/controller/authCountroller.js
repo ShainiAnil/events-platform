@@ -1,4 +1,5 @@
 const  Users  = require("../model/userModel")
+const Events = require("../model/eventModel")
 const { generatedPasswordHash,comparePasswordHash } = require("../utils/bcrypt")
 const { generateAccessToken,generateRefreshToken,verifyRefreshToken
 } = require("../utils/jwt");
@@ -58,16 +59,24 @@ const login = async (req, res) => {
         });
     }
 };
+//signed up for an event
 const addEvent = async (req, res) => {
     const { eventId, userId } = req.body;
 
     try {
         const isUserExists = await Users.findById({ _id: userId });
+        const event = await Events.findById({ _id: eventId });
         if (!isUserExists) {
             res.status(404).json({
                 message: "User doesnot Exists!"
             });
         }
+        if (!event) {
+            res.status(404).json({
+                message: "Event doesnot Exists!"
+            });
+        }
+         
         let myEvents = isUserExists.myEvents || [];
 
         if (isUserExists.myEvents.indexOf(eventId) !== -1) {
@@ -76,9 +85,12 @@ const addEvent = async (req, res) => {
             });
         }
         myEvents.push(eventId);
+        
         const updatedData = await Users.findByIdAndUpdate({ _id: userId }, { myEvents: myEvents }, { new: true });
         updatedData && res.status(200).json();
-
+         // Update event's attendees
+         let attendees = [...event.attendees, userId];
+         await Events.findByIdAndUpdate(eventId, { attendees: attendees });
     } catch (error) {
         res.status(404).json({
             message: error.message

@@ -49,15 +49,15 @@ const addEvents = async (req, res) => {
         const categoryArr = category?.split(",");
         const attendeesArr = attendees?.split(",");
 
-        const movieImageUrl = res.locals.movieImageData?.secure_url
-        const newMovie = await eventModel.create({ title, description, location, image, category:categoryArr, price, attendees:attendeesArr, startDate,endDate });
-        res.json(movieImageUrl);
+        const eventImageUrl = res.locals.eventImageData?.secure_url
+        const newEvent = await eventModel.create({ title, description, location, image, category:categoryArr, price, attendees:attendeesArr, startDate,endDate });
+        res.json(eventImageUrl);
 
-        eventEmitter.emit('movieEvent', {
-            id:newMovie._id,
-            title : newMovie.title,
-            url : newMovie.url,
-            type: 1,
+        eventEmitter.emit('newEvent', {
+            id:newEvent._id,
+            title : newEvent.title,
+            image : newEvent.url,
+           
         });
 
     } catch (error) {
@@ -86,9 +86,9 @@ const editEvents = async (req, res) => {
             endDate:endDate
         };
 
-        if (res.locals.movieImageData) {
-            const movieImageUrl = res.locals.movieImageData?.secure_url;
-            updatedMovie.url = movieImageUrl;
+        if (res.locals.eventImageData) {
+            const eventImageUrl = res.locals.eventImageData?.secure_url;
+            updatedEvent.image = eventImageUrl;
         }
 
         const isExists = await eventModel.findByIdAndUpdate(eventId, updatedEvent, { new: true });
