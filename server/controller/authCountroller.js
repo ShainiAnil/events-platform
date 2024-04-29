@@ -29,10 +29,10 @@ const register = async (req, res) => {
     }
 };
 const login = async (req, res) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
     try {
-        const user = await Users.findOne({ email });
+        const user = await Users.findOne({ username });
         if (!user) {
             return res.status(404).json({ message: "User doesnot exists.!" });
         }
