@@ -1,53 +1,10 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} */
-
-@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  padding: 0;
-  margin: 0;
- 
-}
-
-html {
-  width:100vw;
-  overflow-x: hidden;
-  
-}
-
-body {
-  background: #f1f1f1;
-  margin: 0;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  color: rgb(74, 74, 74);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
 
 .navbar {
-
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-top: 40px;
-  z-index: 2;
-  /* margin: 0 10%; */
   padding: 0 10%;
   background-color: lightgray;
 }
@@ -56,18 +13,18 @@ a {
   border: none;
   margin: 0;
   padding: 0;
-
 }
-.title {
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 1px;
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: .1rem;
   text-decoration: none;
   transition: 0.2s;
+  color: rgb(51, 47, 47);
 }
 
 .title:hover {
-  color: dodgerblue;
+  color: rgb(8, 21, 34);
 }
 
 .menuBtn {
@@ -90,30 +47,19 @@ a {
   font-weight: 500;
   letter-spacing: 0.5px;
   text-decoration: none;
-  transition: 0.2s;
+  color: black;
 }
 
 .menuItems a:hover {
-color: dodgerblue;
+color: rgb(131, 30, 255);
 }
 
-/* button {
-  background-color: dodgerblue;
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 16px;
-  border: 0;
-  color: #fff;
-  padding: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-} */
 
 @media screen and (max-width: 830px) {
   .navbar {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 3% 5%;
+    align-items:baseline; 
+    padding:2%;
   }
 
   .title {
@@ -127,28 +73,33 @@ color: dodgerblue;
     flex-direction: column;
     align-items: flex-end;
     padding: 0 4%;
-    gap: 2px;
+    gap: 0px;
   }
 
   .menuBtn {
     display: block;
     cursor: pointer;
     width: 36px;
+    filter: invert(46%) sepia(98%) saturate(3860%) hue-rotate(192deg) brightness(92%) contrast(91%);
   }
 
   .menuItems {
     display: none;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    justify-content: center;
+    gap: 10px;
     border-radius: 10px;
     background: lightgray;
-    padding: 24px 36px;
-    /* box-shadow: 0 0 6px rgba(0, 0, 0, 0.5); */
+    padding: 20px 36px;
+    margin-top:0px;
+    position: relative;
+    right: 0px;
+    
   }
 
   .menuOpen {
     display: flex;
-    z-index: 1;
+    
   }
 }

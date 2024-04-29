@@ -1,15 +1,34 @@
+import "./App.css";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { Login } from "./components/Login-SignUp/Login";
+import { Navbar } from "./components/NavBar/NavBar";
+import { Events } from "./components/Events/Events";
+import { EventCard } from "./components/EventCard/EventCard";
 
-import './App.css'
 
-function App() {
-  
+import { UserProvider } from "./context/UserContext";
+import SignUpNew from "./components/Login-SignUp/SignUpNew";
+import LoginNew from "./components/Login-SignUp/LoginNew";
 
+
+const App = () => {
   return (
-    <div className="bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold text-gray-800">Hello, Tailwind CSS!</h1>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Button111</button>
-    </div>
-  )
-}
+    <>
+      <UserProvider>
+        <Navbar />
+        
+        <Routes>
+          
+         <Route path="/" element={<Events />} />
+          <Route path="/events" element={<Events />} /> 
+          <Route path="/signup" element={<SignUpNew />} /> 
+          <Route path="/login" element={<LoginNew />} />
+          <Route path="/events/:_id" element={<EventCard />} /> 
+        </Routes> 
+      </UserProvider>
+    </>
+  );
+};
 
-export default App
+export default App;
