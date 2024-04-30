@@ -29,17 +29,17 @@ const register = async (req, res) => {
     }
 };
 const login = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-        const user = await Users.findOne({ username });
+        const user = await Users.findOne({ email });
         if (!user) {
-            return res.status(404).json({ message: "User doesnot exists.!" });
+            return res.status(404).json({ message: "User does not exists.!" });
         }
 
         const validPassword = await comparePasswordHash(password, user.password);
         if (!validPassword) {
-            return res.status(404).json({ message: "Username/Paswword is not valid!" });
+            return res.status(404).json({ message: "email/Paswword is not valid!" });
         }
 
          // Generate Access Token
