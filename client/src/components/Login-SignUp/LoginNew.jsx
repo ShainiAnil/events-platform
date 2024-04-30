@@ -8,83 +8,81 @@ import "react-toastify/dist/ReactToastify.css";
 import UserContext from "../../context/UserContext";
 
 const LoginNew = () => {
-    const navigate = useNavigate();
-    const [dbError, setDbError] = useState(false);
-    const [fields, setFields] = useState({
-      username: "",
-        password: ""
-    });
-    const [errorFields, setErrorFields] = useState({
-      username: false,
-      
-      password: false
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
+  const [dbError, setDbError] = useState(false);
+  const [fields, setFields] = useState({
+    username: "",
+    password: "",
+  });
+  const [errorFields, setErrorFields] = useState({
+    username: false,
+
+    password: false,
+  });
+
+  const handleChange = (event) => {
+    setFields((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    setDbError(false);
     
-    });
-  
-    const handleChange = (event) => {
-      setFields((prev) => ({
-        ...prev,
-        [event.target.name]: event.target.value,
-      }));
-    };
-  
-    const handleLogin = (event) => {
-      event.preventDefault();
-  
-      if (isFormValid()) {
-        console.log("insidevvvv")
-        login(fields).then((data) => {
-           
-            if (!data) {
-              console.log("no data");
-              setDbError(true);
-            } else {
-              console.log("data found");
-              //setUser(userData);
-              setDbError(false);
-              navigate("/");
-            }
-          });
-  
-        }
-       
-      
-      console.log("Invalid");
-    };
-  
-    const isFormValid = () => {
-      const errors = {
-        username: false,
-       
-        password: false
-       
-      };
-  
-      Object.keys(fields).map((key) => {
-        if (fields[key] === "") {
-          errors[key] = true;
-        }
+    if (isFormValid()) {
+      login(fields).then((data) => {
+        if (data) {
+          console.log("data found",data);
+          //setUser(userData);
+          setDbError(false);
+          toast.success("Successfuly logged in");
+         setUser(fields.username)
+         // localStorage.setItem("token", data.accessToken);
+          navigate("/");
+        } 
+        
       });
-  
-      setErrorFields(errors);
-      if (Object.values(errors).some((value) => value === true)) {
-        return false;
-      }
-      return true;
+    }
+    
+    setDbError(true);
+    console.log("Invalid");
+  };
+
+  const isFormValid = () => {
+    const errors = {
+      username: false,
+
+      password: false,
     };
-    const isFormValidOnBlur = (event) => {
-      const { name, value } = event.target;
-  
-      let error = false;
-      if (value === "") {
-        error = true;
+
+    Object.keys(fields).map((key) => {
+      if (fields[key] === "") {
+        errors[key] = true;
       }
-  
-      setErrorFields((prev) => ({
-        ...prev,
-        [name]: error,
-      }));
-    };
+    });
+
+    setErrorFields(errors);
+    if (Object.values(errors).some((value) => value === true)) {
+      return false;
+    }
+    return true;
+  };
+  const isFormValidOnBlur = (event) => {
+    const { name, value } = event.target;
+
+    let error = false;
+    if (value === "") {
+      error = true;
+    }
+
+    setErrorFields((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
+  };
   return (
     <>
       <div className="login-container">
@@ -127,6 +125,7 @@ const LoginNew = () => {
                 <p>Forgot Password?</p>
               </div>
             </Link> */}
+          {dbError && <div className="error">Error signing up</div>}
         </form>
         <div className="sign-upnav">
           <div>

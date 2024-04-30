@@ -30,10 +30,11 @@ export const createNewUser = (addNewUser) => {
   });
 };
 
-export const login = (formData) => { console.log("hellooo",formData)
+export const login = (formData) => {
   return axios.post(`${BASE_URL}/auth/login`, formData).then((response) => {
-    console.log(response)
-    return response.data;
+    
+   return response;
+ 
   });
 };
 
