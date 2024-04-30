@@ -4,28 +4,29 @@ import UserContext from "../../context/UserContext";
 import { getEventById } from "../../utils/api";
 import "./EventCard.css";
 import { formatDate } from "../../utils/util";
+import BookEvent from "../BookEvent/BookEvent";
 
 export const EventCard = () => {
   const { user } = useContext(UserContext);
 
   const [currentEvent, setCurrentEvent] = useState({});
-  const [attending, setAttending] = useState([]);
+  const [attendees, setAttendees] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isUserAttending, setIsUserAttending] = useState(false);
-  const [clickedTicketBtn, setClickedTicketBtn] = useState(false);
+  const [userAttending, setUserAttending] = useState(false);
+  const [confirmBooking, setConfirmBooking] = useState(false);
   const { _id } = useParams();
-
+  const eventId = _id;
   useEffect(() => {
     setIsLoading(true);
     getEventById(_id).then((eventData) => {
       setCurrentEvent(eventData);
-      setAttending(eventData.attendees);
+      setAttendees(eventData.attendees);
       eventData.attendees.map((attendee) => {
-        if (attendee.email === user.email) {
-          setIsUserAttending(true);
+        if (attendee === user._id) {
+          setUserAttending(true);
         }
       });
-      console.log("event....=",currentEvent)
+     
       setIsLoading(false);
     });
   }, [_id]);
@@ -36,7 +37,8 @@ export const EventCard = () => {
         <p>Loading...</p>
       </div>
     );
-
+    // console.log("event....isUserAttending=",userAttending)
+    // console.log("event....userId=",user)
   return (
     <div className="main">
     <h1 className="heading">{currentEvent.title}</h1>
@@ -61,7 +63,7 @@ export const EventCard = () => {
           {currentEvent.description}
         </p>
 
-        {user && attendees.length !== 0 && (
+        {/* {user && attendees.length !== 0 && (
           <p>
             <strong>Who's going:</strong>
           </p>
@@ -85,7 +87,7 @@ export const EventCard = () => {
         <p>
           <strong>Price</strong> <br />
           🛒 {currentEvent.price}
-        </p>
+        </p> */}
 
         {!user && (
           <div className="login-signup">
@@ -100,8 +102,30 @@ export const EventCard = () => {
           </p>
           </div>
         )}
+        {user && !userAttending && (
+        <BookEvent eventId = {eventId} userId= {user._id} 
+        setUserAttending={setUserAttending}
+        attendees = {attendees}
+        setAttendees = {setAttendees}/>
+       
+      )}
+      {user && userAttending && (<butten>cancel</butten>
+        // <GoogleCal _id={_id} clickedTicketBtn={clickedTicketBtn} />
+      )} 
       </div>
     </div>
+    {/* {user && !userAttending && (
+        <BookEvent eventId = {eventId} userId= {user._id} 
+        setUserAttending={setUserAttending}
+        attendees = {attendees}
+        setAttendees = {setAttendees}/>
+       
+      )} */}
+
+      
     </div>
+    
+
+   
   );
 };

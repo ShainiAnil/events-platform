@@ -5,7 +5,7 @@ const BASE_URL = "http://localhost:3007/api";
 
 export const getEvents = () => {
    return axios.get(`${BASE_URL}/events`).then((response) => {
-      console.log("hi from api", response.data.evenlist)
+      
        return response.data.eventList
    });
 }
@@ -23,21 +23,37 @@ export const createNewEvent = (addNewEvent) => {
   });
 };
 
-export const createNewUser = (addNewUser) => {
-  return axios.post(`${BASE_URL}/auth/register`, addNewUser).then((response) => {
-    console.log(response.data)
+// export const createNewUser = (addNewUser) => {
+  
+//   return axios.post(`${BASE_URL}/auth/register`, addNewUser).then((response) => {
+//     console.log("hiiii",response.data.message)
+//     return response.data;
+//   });
+// };
+export const createNewUser = async (addNewUser) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/auth/register`, addNewUser);
+    console.log("hiiii", response.data.message);
     return response.data;
-  });
+  } catch (error) {
+    console.error("Error while creating new user:", error);
+    throw error; // Rethrow the error to handle it in the calling code
+  }
 };
-
 export const login = (formData) => {
   return axios.post(`${BASE_URL}/auth/login`, formData).then((response) => {
     
-   return response;
+   return response.data;
  
   });
 };
-
+export const addEvent = (formData) => {console.log("hello it's me addEvent", formData)
+  return axios.post(`${BASE_URL}/auth/addEvent`, formData).then((response) => {
+    console.log(response.data)
+   return response.data;
+ 
+  });
+};
 export const updateAttending = (_id, user) => {
   return axios.patch(`${BASE_URL}/events/${_id}`, user).then((response) => {
     return response.data;

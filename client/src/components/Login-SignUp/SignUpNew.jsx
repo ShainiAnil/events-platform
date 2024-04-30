@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { TextInput } from "./TextInput";
+import { TextInput } from "../TextInput/TextInput";
 import { Select } from "./Select";
-import "./Login.css";
+import "../TextInput/TextInput.css";
 import { useNavigate } from "react-router-dom";
 import { createNewUser } from "../../utils/api";
 

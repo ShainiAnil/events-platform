@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Login } from "./components/Login-SignUp/Login";
+
 import { Navbar } from "./components/NavBar/NavBar";
 import { Events } from "./components/Events/Events";
 import { EventCard } from "./components/EventCard/EventCard";

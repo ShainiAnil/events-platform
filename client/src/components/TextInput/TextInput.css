@@ -188,7 +188,7 @@ form {
   /* .login-input-container input:focus {
     outline: none;
   } */
-  .login-input-container button {
+  /* .login-input-container button {
     width: 100%;
     padding: 15px;
     margin-top: 50px;
@@ -203,7 +203,7 @@ form {
   }
   .login-input-container button:hover {
   background-color: #e50914d0;
-  }
+  } */
   /* .overlay {
     position: absolute;
     top: 0;

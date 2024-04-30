@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import "./Login.css";
+import "../TextInput/TextInput.css";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../utils/api";
-import { TextInput } from "./TextInput";
+import { TextInput } from "../TextInput/TextInput";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserContext from "../../context/UserContext";
@@ -39,7 +39,7 @@ const LoginNew = () => {
           //setUser(userData);
           setDbError(false);
           toast.success("Successfuly logged in");
-         setUser(fields.username)
+         setUser(data)
          // localStorage.setItem("token", data.accessToken);
           navigate("/");
         } 
@@ -48,7 +48,7 @@ const LoginNew = () => {
     }
     
     setDbError(true);
-    console.log("Invalid");
+     console.log("Invalid");
   };
 
   const isFormValid = () => {

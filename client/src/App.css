@@ -97,17 +97,20 @@ a {
 color: dodgerblue;
 }
 
-/* button {
-  background-color: dodgerblue;
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 16px;
-  border: 0;
-  color: #fff;
-  padding: 10px;
-  border-radius: 4px;
+button {
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  background-color: rgb(0, 225, 255);
+  color: rgb(8, 8, 8);
+  border-radius: 6px;
+  margin-top: 10px;
   cursor: pointer;
-} */
+  transition: background-color 0.2s ease-in-out;
+}
+button:hover {
+  background-color: rgb(0, 128, 17);
+}
 
 @media screen and (max-width: 830px) {
   .navbar {
