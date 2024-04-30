@@ -19,14 +19,14 @@ export const getEventById = (_id) => {
 
 export const createNewEvent = (addNewEvent) => {
   return axios.post(`${BASE_URL}/events`, addNewEvent).then((response) => {
-    return response.data;
+    return response;
   });
 };
 
 export const createNewUser = (addNewUser) => {
   
   return axios.post(`${BASE_URL}/auth/register`, addNewUser).then((response) => {
-    console.log("hiiii",response.data.message)
+   
     return response;
   });
 };
@@ -43,7 +43,7 @@ export const createNewUser = (addNewUser) => {
 export const login = (formData) => {
   return axios.post(`${BASE_URL}/auth/login`, formData).then((response) => {
     
-   return response.data;
+   return response;
  
   });
 };

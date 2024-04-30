@@ -32,29 +32,29 @@ const SignUpNew = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    
     if (isFormValid()) {
       createNewUser(fields)
-      .then(({res}) => {
-        if (res) {
-          console.log("sign up successful");
+      .then((res) => {
+        if (res.data.message==="Account has been created") {
+          setDbError("")
           navigate("/");
         } 
       
       })
       .catch(error => {
-        // If an error occurs during registration, handle it here
-        console.error('Error:', error);
+        
+        
         if (error.response && error.response.data && error.response.data.message) {
-          // Check if the error response contains a message
-          console.log("errrrr",error.response.data.message);
+          
           setDbError(error.response.data.message); // Set the error message state
-        } else {
-          setErrorMessage('An unexpected error occurred.'); // Set a generic error message
-        }
+        } 
+        // else {
+        //   setErrorMessage('An unexpected error occurred.'); // Set a generic error message
+        // }
       });
       
-         // setDbError(true);
+         
       return
     }
     console.log("Invalid");

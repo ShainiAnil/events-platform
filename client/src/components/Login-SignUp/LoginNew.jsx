@@ -10,7 +10,7 @@ import UserContext from "../../context/UserContext";
 const LoginNew = () => {
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
-  const [dbError, setDbError] = useState(false);
+  const [dbError, setDbError] = useState("");
   const [fields, setFields] = useState({
     email: "",
     password: "",
@@ -30,26 +30,35 @@ const LoginNew = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    setDbError(false);
+    
     
     if (isFormValid()) {
-      login(fields).then((data) => {
-        if (data) {
-          console.log("data found",data);
-          //setUser(userData);
-          setDbError(false);
-          toast.success("Successfuly logged in");
-         setUser(data)
+      login(fields)
+      .then((response) => {
+        if (response.data) {
+          setDbError("");
+          setUser(response.data)
          // localStorage.setItem("token", data.accessToken);
-          navigate("/");
+         navigate("/");
         } 
        
+      })
+      .catch(error => {
+        if (error.response && error.response.data && error.response.data.message) {
+          // Check if the error response contains a message
+          console.log("errrrr",error.response.data.message);
+          setDbError(error.response.data.message); // Set the error message state
+        }
+        // else {
+        //   setErrorMessage('An unexpected error occurred.'); // Set a generic error message
+        // }
       });
       
     }
     
-    setDbError(true);
+    
      console.log("Invalid");
+    return
   };
 
   const isFormValid = () => {
@@ -126,7 +135,7 @@ const LoginNew = () => {
                 <p>Forgot Password?</p>
               </div>
             </Link> */}
-          {dbError && <div className="error">Data base error</div>}
+          {dbError && <div className="error">{dbError}</div>}
         </form>
         <div className="sign-upnav">
           <div>
