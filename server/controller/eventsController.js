@@ -49,9 +49,9 @@ const addEvents = async (req, res) => {
         const categoryArr = category?.split(",");
         const attendeesArr = attendees?.split(",");
 
-        const eventImageUrl = res.locals.eventImageData?.secure_url
+        // const eventImageUrl = res.locals.eventImageData?.secure_url
         const newEvent = await eventModel.create({ title, description, location, image, category:categoryArr, price, attendees:attendeesArr, startDate,endDate });
-        res.json(eventImageUrl);
+        //res.json(eventImageUrl);
 
         eventEmitter.emit('newEvent', {
             id:newEvent._id,

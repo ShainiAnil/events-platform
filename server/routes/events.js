@@ -5,8 +5,8 @@ const { eventById, events, addEvents, editEvents, deleteEvents, filterEvents} = 
 
 router.get("/:id", eventById);
 router.get("/", events);
-router.post("/",handler,addEvents);
-router.put("/",handler,editEvents);
+router.post("/",addEvents);
+router.put("/",editEvents);
 router.delete("/:id",deleteEvents);
 
 module.exports = router;
