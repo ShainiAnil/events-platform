@@ -12,7 +12,7 @@ const register = async (req, res) => {
     try {
         const isExists = await Users.findOne({ email });
         if (isExists) {
-            return res.status(404).json({ message: "User already exists" });
+            return res.status(404).json({ message: "Email already exists" });
         }
         const hashedPass = await generatedPasswordHash(password);
         const newUser = await Users.create({ email, username, password: hashedPass , role})
