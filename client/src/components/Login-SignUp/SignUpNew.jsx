@@ -9,7 +9,7 @@ const roles = ["user", "admin"];
 
 const SignUpNew = () => {
   const navigate = useNavigate();
-  const [dbError, setDbError] = useState(false);
+  const [dbError, setDbError] = useState("");
   const [fields, setFields] = useState({
     username: "",
     email: "",
@@ -34,18 +34,28 @@ const SignUpNew = () => {
     event.preventDefault();
 
     if (isFormValid()) {
-      createNewUser(fields).then((data) => {
-        if (data.message !== "Account has been created") {
-         setDbError(true);
-        } else {
+      createNewUser(fields)
+      .then(({res}) => {
+        if (res) {
           console.log("sign up successful");
-
-          setDbError(false);
           navigate("/");
+        } 
+      
+      })
+      .catch(error => {
+        // If an error occurs during registration, handle it here
+        console.error('Error:', error);
+        if (error.response && error.response.data && error.response.data.message) {
+          // Check if the error response contains a message
+          console.log("errrrr",error.response.data.message);
+          setDbError(error.response.data.message); // Set the error message state
+        } else {
+          setErrorMessage('An unexpected error occurred.'); // Set a generic error message
         }
       });
-      alert("Submitted!");
-      return;
+      
+         // setDbError(true);
+      return
     }
     console.log("Invalid");
   };
@@ -89,11 +99,11 @@ const SignUpNew = () => {
       <form onSubmit={handleSubmit}>
         <h1>Register</h1>
         <p className="caption">Please fill the form.</p>
-        {dbError && <div className="error">Error signing up</div>}
+        {dbError && <div className="error">{dbError}</div>}
         <TextInput
           handleChange={handleChange}
           errorFields={errorFields}
-          label="Username"
+          label="Name"
           id="username"
           name="username"
           type="text"

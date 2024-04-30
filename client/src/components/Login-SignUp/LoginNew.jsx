@@ -12,11 +12,11 @@ const LoginNew = () => {
   const { user, setUser } = useContext(UserContext);
   const [dbError, setDbError] = useState(false);
   const [fields, setFields] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [errorFields, setErrorFields] = useState({
-    username: false,
+    email: false,
 
     password: false,
   });
@@ -43,8 +43,9 @@ const LoginNew = () => {
          // localStorage.setItem("token", data.accessToken);
           navigate("/");
         } 
-        
+       
       });
+      
     }
     
     setDbError(true);
@@ -53,7 +54,7 @@ const LoginNew = () => {
 
   const isFormValid = () => {
     const errors = {
-      username: false,
+      email: false,
 
       password: false,
     };
@@ -94,10 +95,10 @@ const LoginNew = () => {
             <TextInput
               handleChange={handleChange}
               errorFields={errorFields}
-              label="Username"
-              id="username"
-              name="username"
-              type="username"
+              label="Email"
+              id="email"
+              name="email"
+              type="email"
               autocomplete="on"
             />
           </div>
@@ -125,7 +126,7 @@ const LoginNew = () => {
                 <p>Forgot Password?</p>
               </div>
             </Link> */}
-          {dbError && <div className="error">Error signing up</div>}
+          {dbError && <div className="error">Data base error</div>}
         </form>
         <div className="sign-upnav">
           <div>

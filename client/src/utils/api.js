@@ -23,23 +23,23 @@ export const createNewEvent = (addNewEvent) => {
   });
 };
 
-// export const createNewUser = (addNewUser) => {
+export const createNewUser = (addNewUser) => {
   
-//   return axios.post(`${BASE_URL}/auth/register`, addNewUser).then((response) => {
-//     console.log("hiiii",response.data.message)
-//     return response.data;
-//   });
-// };
-export const createNewUser = async (addNewUser) => {
-  try {
-    const response = await axios.post(`${BASE_URL}/auth/register`, addNewUser);
-    console.log("hiiii", response.data.message);
-    return response.data;
-  } catch (error) {
-    console.error("Error while creating new user:", error);
-    throw error; // Rethrow the error to handle it in the calling code
-  }
+  return axios.post(`${BASE_URL}/auth/register`, addNewUser).then((response) => {
+    console.log("hiiii",response.data.message)
+    return response;
+  });
 };
+// export const createNewUser = async (addNewUser) => {
+//   try {
+//     const response = await axios.post(`${BASE_URL}/auth/register`, addNewUser);
+//     console.log("hiiii", response.data.message);
+//     return response;
+//   } catch (error) {
+//     console.error("Error while creating new user:", error);
+//     throw error; // Rethrow the error to handle it in the calling code
+//   }
+// };
 export const login = (formData) => {
   return axios.post(`${BASE_URL}/auth/login`, formData).then((response) => {
     
