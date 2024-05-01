@@ -1,6 +1,8 @@
 import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { extractTokens } from "../../utils/api";
+import "../BookEvent/BookEvent.css"
+
 const GoogleCalendar = ({eventId}) => {
     const login = useGoogleLogin({
         onSuccess: (googleResponse) => {
@@ -24,8 +26,8 @@ const GoogleCalendar = ({eventId}) => {
     
       return (
         <>
-          <div>
-            <button onClick={() => login()}>Add to Calendar</button>
+          <div className="book-container"> 
+            <button  onClick={() => login()}>Add to Calendar</button>
           </div>
         </>
       );
