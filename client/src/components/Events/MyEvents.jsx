@@ -1,28 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { getEvents } from "../../utils/api";
+import React, { useEffect, useState, useContext } from "react";
+import { myEvents } from "../../utils/api";
 import { Link } from "react-router-dom";
 import "./Events.css";
+import UserContext from "../../context/UserContext";
 
-export const Events = () => {
+const MyEvents = () => {
   const [events, setEvents] = useState([]);
+  const [myEventsCount, setMyEventsCount]= useState(0)
   const [isLoading, setIsLoading] = useState(true);
-
+  const { user } = useContext(UserContext);
+  const userId = user._id;
+  
   useEffect(() => {
     setIsLoading(true);
-    getEvents().then((data) => {
-      setEvents(data);
+    myEvents({ userId }).then((data) => {
+      setEvents(data.myEventsList);
+      setMyEventsCount(data.myEventsCount);
     });
-    console.log("from event.jss", events.length);
+    
     setIsLoading(false);
   }, []);
 
-  if (events.length === 0)
-    return (
+  // if (events.length === 0)
+  //   return (
+  //     <div className="isLoading">
+  //       <p>Loading...</p>
+  //     </div>
+  //   );
+    if(events.length === 0 && myEventsCount === 0)
+    return(
       <div className="isLoading">
-        <p>Loading...</p>
+        <p>No Bookings</p>
       </div>
-    );
-
+  )
   return (
     <>
       <div className="main">
@@ -48,7 +58,7 @@ export const Events = () => {
                     </div>
                     <div className="card_content">
                       <h2 className="card_title">{title}</h2>
-                      <p className="card_text">@{location}</p>
+                      <p className="card_text">{description}</p>
                       <Link to={`/events/${_id}`}>
                         <button className="btn card_btn">Read More</button>
                       </Link>
@@ -60,6 +70,9 @@ export const Events = () => {
           )}
         </ul>
       </div>
+
     </>
   );
 };
+
+export default MyEvents;

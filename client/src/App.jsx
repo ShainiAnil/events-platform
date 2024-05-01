@@ -11,6 +11,8 @@ import { UserProvider } from "./context/UserContext";
 import SignUpNew from "./components/Login-SignUp/SignUpNew";
 import LoginNew from "./components/Login-SignUp/LoginNew";
 import CreateEvent from "./components/Events/CreateEvent";
+import Footer from "./components/Footer/Footer";
+import MyEvents from "./components/Events/MyEvents";
 
 
 const App = () => {
@@ -27,8 +29,11 @@ const App = () => {
           <Route path="/login" element={<LoginNew />} />
           <Route path="/events/:_id" element={<EventCard />} /> 
           <Route path="/create-event" element={<CreateEvent />} /> 
+          <Route path="/my-events" element={<MyEvents />} />
         </Routes> 
+        {/* <Footer/> */}
       </UserProvider>
+      
     </>
   );
 };

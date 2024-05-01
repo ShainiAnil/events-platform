@@ -1,31 +1,30 @@
 import React, { useState, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import UserContext from "../../context/UserContext";
-import  "./NavBar.css";
+import "./NavBar.css";
 import closeIcon from "../../assets/closeIcon.png";
 import menuIcon from "../../assets/menuIcon.png";
 
 export const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <nav className="navbar">
       <Link to="/" className="logo">
-       EventVibe
+        EventVibe
       </Link>
       <div className="menu">
         <img
           className="menuBtn"
-          src={isMenuOpen ? closeIcon : menuIcon}
+          src={menuOpen ? closeIcon : menuIcon}
           alt="menu-button"
-          onClick={() => setIsMenuOpen(!isMenuOpen)} 
-          
+          onClick={() => setMenuOpen(!menuOpen)}
         />
         <ul
-          className={`menuItems ${isMenuOpen && 'menuOpen'}`}
-          onClick={() => setIsMenuOpen(false)}
+          className={`menuItems ${menuOpen && "menuOpen"}`}
+          onClick={() => setMenuOpen(false)}
         >
           <li>
             <NavLink to="/events">Events</NavLink>
@@ -36,6 +35,13 @@ export const Navbar = () => {
             </li>
           )}
           {user ? (
+            <>
+            <li>
+              <NavLink
+                to="/my-events" >
+                My Events
+              </NavLink>
+            </li>
             <li>
               <NavLink
                 to="/"
@@ -46,6 +52,9 @@ export const Navbar = () => {
                 Logout
               </NavLink>
             </li>
+            
+            </>
+            
           ) : (
             <>
               <li>

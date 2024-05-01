@@ -5,6 +5,8 @@ import "../TextInput/TextInput.css";
 import { useNavigate } from "react-router-dom";
 import { createNewEvent, getCategory } from "../../utils/api";
 import "../TextInput/TextInput.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const CreateEvent = () => {
   const navigate = useNavigate();
   const [dbError, setDbError] = useState("");
@@ -15,7 +17,7 @@ const CreateEvent = () => {
     image: "",
     category: "",
     price: "",
-    
+
     startDate: "",
     endDate: "",
   });
@@ -26,7 +28,7 @@ const CreateEvent = () => {
     image: false,
     category: false,
     price: false,
-    
+
     startDate: false,
     endDate: false,
   });
@@ -46,7 +48,7 @@ const CreateEvent = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("fields from create event", fields)
+    console.log("fields from create event", fields);
     if (isFormValid()) {
       createNewEvent(fields)
         .then((response) => {
@@ -71,7 +73,7 @@ const CreateEvent = () => {
           // }
         });
     }
-    console.log("Invalid"); 
+    console.log("Invalid");
   };
 
   const isFormValid = () => {
@@ -82,7 +84,7 @@ const CreateEvent = () => {
       image: false,
       category: false,
       price: false,
-      
+
       startDate: false,
       endDate: false,
     };
@@ -103,7 +105,7 @@ const CreateEvent = () => {
     const { name, value } = event.target;
 
     let error = false;
-    if (value === "" ) {
+    if (value === "") {
       error = true;
     }
 
@@ -137,7 +139,9 @@ const CreateEvent = () => {
             name="description"
           />
 
-           {errorFields["description"] && <p className="danger">Description is required</p>} 
+          {errorFields["description"] && (
+            <p className="danger">Description is required</p>
+          )}
         </div>
 
         <TextInput
@@ -162,15 +166,17 @@ const CreateEvent = () => {
           <label htmlFor="category">
             Category <span className="danger">*</span>
           </label>
-        <select name="category" onChange={handleChange}>
-          <option value="">Select</option>
-          {category.map((item) => (
-            <option key={item._id} value={item._id}>
-              {item.category}
-            </option>
-          ))}
-        </select>
-        {errorFields["category"] && <p className="danger"> Category is required</p>} 
+          <select name="category" onChange={handleChange}>
+            <option value="">Select</option>
+            {category.map((item) => (
+              <option key={item._id} value={item._id}>
+                {item.category}
+              </option>
+            ))}
+          </select>
+          {errorFields["category"] && (
+            <p className="danger"> Category is required</p>
+          )}
         </div>
         <TextInput
           handleChange={handleChange}
@@ -201,6 +207,7 @@ const CreateEvent = () => {
         />
         <button type="submit">Submit</button>
       </form>
+      <ToastContainer />
     </div>
   );
 };

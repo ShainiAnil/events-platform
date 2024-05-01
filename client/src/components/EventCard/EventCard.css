@@ -2,7 +2,6 @@
   /* height: 100vh; */
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 .main .container {
   padding: 0;
@@ -27,7 +26,7 @@
   padding: 1% 0 0 4%;
   width: 40%;
   height: 100%;
- }
+}
 .data-container p {
   font-size: 1rem;
   color: rgb(215, 211, 203);
@@ -37,7 +36,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  
 }
 
 ul {
@@ -49,17 +47,24 @@ ul {
   padding: 2%;
   font-size: 2.5rem;
   color: rgb(184, 199, 214);
- }
+}
 
 .link {
-  text-decoration: underline;
-  font-weight: 700;
-  color: rgb(30, 255, 150);
+  font-weight: 400;
+  color: rgb(63 231 153);
+  background-color: darkcyan;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.clock-face {
+  padding-left: 15px;
+  padding-right: 5px;
 }
 
 @media screen and (max-width: 830px) {
   .container {
-    padding:2%;
+    padding: 2%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,12 +72,5 @@ ul {
   }
   .data-container {
     height: auto;
-  }
-  .topicText {
-    font-size: 16px;
-  }
-
-  .singleEvent__title {
-    font-size: 24px;
   }
 }

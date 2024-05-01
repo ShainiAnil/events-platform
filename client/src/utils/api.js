@@ -54,6 +54,13 @@ export const login = (formData) => {
  
   });
 };
+export const myEvents = (formData) => {
+  return axios.post(`${BASE_URL}/auth/myEvents?page=1&limit=10`, formData).then((response) => {
+    console.log(response)
+   return response.data;
+ 
+  });
+};
 export const addEvent = (formData) => {console.log("hello it's me addEvent", formData)
   return axios.post(`${BASE_URL}/auth/addEvent`, formData).then((response) => {
     console.log(response.data)
