@@ -7,9 +7,9 @@ const GoogleCalendar = ({eventId}) => {
     const login = useGoogleLogin({
         onSuccess: (googleResponse) => {
           const { code } = googleResponse;
-          console.log("login successful", { code });
+          console.log("login successful",  code );
     
-          extractTokens(eventId, { code }).then((serverResponse) => {
+          extractTokens(eventId, code).then((serverResponse) => {
             if (serverResponse) {
               console.log("event added to calendar", serverResponse);
             }
