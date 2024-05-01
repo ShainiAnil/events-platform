@@ -5,6 +5,7 @@ import { getEventById } from "../../utils/api";
 import "./EventCard.css";
 import { formatDate, convertTimestamp } from "../../utils/util";
 import BookEvent from "../BookEvent/BookEvent";
+import GoogleCalendar from "../GoogleCalendar/GoogleCalendar";
 
 export const EventCard = () => {
   const { user } = useContext(UserContext);
@@ -85,8 +86,8 @@ export const EventCard = () => {
             />
           )}
           {user && userAttending && (
-            <butten>cancel</butten>
-            // <GoogleCalendar/>
+            
+            <GoogleCalendar eventId={eventId}/>
           )}
         </div>
       </div>
