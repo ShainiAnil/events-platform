@@ -32,7 +32,7 @@ export const Navbar = () => {
           </li>
           {user.role === "admin" && (
             <li>
-              <NavLink to="/create">Create Event</NavLink>
+              <NavLink to="/create-event">Create Event</NavLink>
             </li>
           )}
           {user ? (

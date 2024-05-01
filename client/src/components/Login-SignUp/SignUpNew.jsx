@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextInput } from "../TextInput/TextInput";
 import { Select } from "./Select";
 import "../TextInput/TextInput.css";
@@ -10,6 +10,7 @@ const roles = ["user", "admin"];
 const SignUpNew = () => {
   const navigate = useNavigate();
   const [dbError, setDbError] = useState("");
+ 
   const [fields, setFields] = useState({
     username: "",
     email: "",

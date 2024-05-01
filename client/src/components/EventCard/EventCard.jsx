@@ -37,8 +37,7 @@ export const EventCard = () => {
         <p>Loading...</p>
       </div>
     );
-    // console.log("event....isUserAttending=",userAttending)
-    // console.log("event....userId=",user)
+   
   return (
     <div className="main">
     <h1 className="heading">{currentEvent.title}</h1>

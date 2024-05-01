@@ -10,6 +10,13 @@ export const getEvents = () => {
    });
 }
 
+export const getCategory = () => {
+  return axios.get(`${BASE_URL}/categories`).then((response) => {
+     
+      return response.data
+  });
+}
+
 export const getEventById = (_id) => {
   return axios.get(`${BASE_URL}/events/${_id}`).then((response) => {
     

@@ -10,6 +10,7 @@ import { EventCard } from "./components/EventCard/EventCard";
 import { UserProvider } from "./context/UserContext";
 import SignUpNew from "./components/Login-SignUp/SignUpNew";
 import LoginNew from "./components/Login-SignUp/LoginNew";
+import CreateEvent from "./components/Events/CreateEvent";
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/signup" element={<SignUpNew />} /> 
           <Route path="/login" element={<LoginNew />} />
           <Route path="/events/:_id" element={<EventCard />} /> 
+          <Route path="/create-event" element={<CreateEvent />} /> 
         </Routes> 
       </UserProvider>
     </>
