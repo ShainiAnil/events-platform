@@ -75,7 +75,7 @@ export const updateAttending = (_id, user) => {
 };
 
 export const extractTokens = (_id, code) => {
-  return axios.post(`${BASE_URL}/auth/${_id}`, code).then((response) => {
+  return axios.post(`${BASE_URL}/google-auth/${_id}`, code).then((response) => {
     return response.data;
   });
 };
