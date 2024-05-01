@@ -5,6 +5,8 @@ const connectDb = require("./config/db");
 const authRoute = require("./routes/auth"); 
 const eventsRoute = require("./routes/events");
 const categoryRoutes = require("./routes/category");
+const googleAuthRoutes = require("./routes/googleAuth")
+
 require("dotenv").config();
 app.use(express.json());
 app.use(cors());
@@ -14,7 +16,7 @@ connectDb();
 app.use("/api/auth",authRoute)
 app.use("/api/events", eventsRoute)
 app.use("/api/categories", categoryRoutes)
-
+app.use("/api/google-auth",googleAuthRoutes)
 app.all("*", (req, res) => {
    res.status(404).json("This page does not exist");
 });
