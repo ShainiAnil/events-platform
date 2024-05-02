@@ -109,11 +109,14 @@ img {
 }
 
 .card_text {
-  color: #fdefef;
+  color: #211f1f;
   font-size: 0.875rem;
   line-height: 1.5;
   margin-bottom: 1.25rem;
   font-weight: 400;
+}
+.card_text .card-info{
+  padding-left: 10px;
 }
 .made_by {
   font-weight: 400;
