@@ -52,10 +52,13 @@ const MyEvents = () => {
                         🧑 Attendees:<span className="card-info">{attendees.length}</span>
                       </p>
                       <p className="card_text">
-                        📍Location:<span className="card-info">{location}</span>
+                        📍<span className="card-info">{location}</span>
                       </p>
                       <p className="card_text">
-                        ⌚Time:<span className="card-info">{convertTimestamp(startDate).time}</span>
+                      🗓️<span className="card-info">{convertTimestamp(startDate).date}</span>
+                      </p>
+                      <p className="card_text">
+                        ⌚<span className="card-info">{convertTimestamp(startDate).time}</span>
                       </p>
                       <Link to={`/events/${_id}`}>
                         <button className="btn card_btn">Read More</button>
