@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import { getEventById } from "../../utils/api";
 import "./EventCard.css";
@@ -9,12 +9,12 @@ import GoogleCalendar from "../GoogleCalendar/GoogleCalendar";
 
 export const EventCard = () => {
   const { user } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const [currentEvent, setCurrentEvent] = useState({});
   const [attendees, setAttendees] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [userAttending, setUserAttending] = useState(false);
-  const [confirmBooking, setConfirmBooking] = useState(false);
+  const [addedtoCal, setAddedtoCal] = useState(false);
   const { _id } = useParams();
   const eventId = _id;
   useEffect(() => {
@@ -38,7 +38,9 @@ export const EventCard = () => {
         <p>Loading...</p>
       </div>
     );
-
+  const handleClick = () => {
+    navigate("/login");
+  };
   return (
     <div className="main">
       <h1 className="heading">{currentEvent.title}</h1>
@@ -63,17 +65,10 @@ export const EventCard = () => {
             <strong>Location</strong> <br />
             📍 {currentEvent.location}
           </p>
-          <p>
-            
-            {currentEvent.description}
-          </p>
+          <p>{currentEvent.description}</p>
           {!user && (
-            <div className="login-signup">
-              <p>
-                <Link to="/login">
-                  <span className="link">Log in</span>
-                </Link>
-              </p>
+            <div className="login-container">
+              <button onClick={handleClick}>Login</button>
             </div>
           )}
           {user && !userAttending && (
@@ -85,10 +80,7 @@ export const EventCard = () => {
               setAttendees={setAttendees}
             />
           )}
-          {user && userAttending && (
-            
-            <GoogleCalendar eventId={eventId}/>
-          )}
+          {user && userAttending && <GoogleCalendar eventId={eventId} setAddedtoCal={setAddedtoCal} addedtoCal = {addedtoCal}/>}
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { extractTokens } from "../../utils/api";
 import "../BookEvent/BookEvent.css";
 
-const GoogleCalendar = ({ eventId }) => {
+const GoogleCalendar = ({ eventId , setAddedtoCal, addedtoCal}) => {
   const login = useGoogleLogin({
     onSuccess: (googleResponse) => {
       const { code } = googleResponse;
@@ -13,7 +13,9 @@ const GoogleCalendar = ({ eventId }) => {
         if (serverResponse) {
           console.log("event added to calendar", serverResponse);
         }
+
         alert("Event added to Google calendar");
+        setAddedtoCal(true)
       });
     },
     flow: "auth-code",
