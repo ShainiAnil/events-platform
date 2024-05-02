@@ -27,7 +27,7 @@ export const Navbar = () => {
           onClick={() => setMenuOpen(false)}
         >
           <li>
-            <NavLink to="/events">Events</NavLink>
+            <NavLink to="/events">Home</NavLink>
           </li>
           {user.role === "admin" && (
             <li>

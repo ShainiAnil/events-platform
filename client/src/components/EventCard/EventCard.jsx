@@ -55,7 +55,7 @@ export const EventCard = () => {
           </p>
           <p>
             <strong>Time</strong> <br />
-            <span className="clock-face">&#128337;</span>
+            <span className="clock-face">⌚</span>
             {convertTimestamp(currentEvent.startDate).time}
             &nbsp;-
             {convertTimestamp(currentEvent.endDate).time}

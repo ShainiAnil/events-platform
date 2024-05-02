@@ -3,7 +3,7 @@ import { myEvents } from "../../utils/api";
 import { Link } from "react-router-dom";
 import "./Events.css";
 import UserContext from "../../context/UserContext";
-
+import { convertTimestamp } from "../../utils/util";
 const MyEvents = () => {
   const [events, setEvents] = useState([]);
   const [myEventsCount, setMyEventsCount]= useState(0)
@@ -36,7 +36,7 @@ const MyEvents = () => {
   return (
     <>
       <div className="main">
-        <h1>Your Bookings</h1>
+        <h1>You have {myEventsCount} Bookings</h1>
         <ul className="cards">
           {events.map(
             ({
@@ -58,7 +58,11 @@ const MyEvents = () => {
                     </div>
                     <div className="card_content">
                       <h2 className="card_title">{title}</h2>
-                      <p className="card_text">Number of attendees:<span>
+                      <p className="card_text">🧑 Attendees:<span>{attendees.length}
+                        </span></p>
+                        <p className="card_text">📍Location:<span>{location}
+                        </span></p>
+                        <p className="card_text">⌚Time:<span>{convertTimestamp(startDate).time}
                         </span></p>
                       <Link to={`/events/${_id}`}>
                         <button className="btn card_btn">Read More</button>
