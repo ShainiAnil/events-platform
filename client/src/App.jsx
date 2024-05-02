@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/create-event" element={<CreateEvent />} /> 
           <Route path="/my-events" element={<MyEvents />} />
         </Routes> 
-        {/* <Footer/> */}
+        <Footer/> 
       </UserProvider>
       
     </>
