@@ -51,7 +51,7 @@ const login = async (req, res) => {
             httpOnly: true,
             secure: true, 
         })
-        res.json({ _id: user._id, email: user.email, role: user.role, accessToken });
+        res.json({ _id: user._id, email: user.email, role: user.role, accessToken, name: user.username });
 
     } catch (error) {
         res.status(404).json({
@@ -133,6 +133,46 @@ const myEvents = async (req, res) => {
         });
     }
 };
+// const myEvents = async (req, res) => {
+//     const { userId } = req.body;
+//     const { page, limit } = req.query;
+
+//     let skip = 0;
+//     if (page > 1) {
+//         skip = +limit * (page - 1);
+//     }
+
+//     try {
+//         const userData = await Users
+//             .findById({ _id: userId }, { myEvents: { $slice: [+skip, +limit] } })
+//             .populate({
+//                 path: 'myEvents',
+//                 populate: [{ path: 'category', select: 'category' }, { path: 'attendees', select: 'username' }]
+//             })
+//             .sort({ myEvents: -1 });
+
+//         const myEvents = userData.myEvents.map(event => ({
+//             ...event.toObject(),
+//             attendees: event.attendees.map(attendee => attendee.username)
+//         }));
+
+//         const myEventsCount = (await Users
+//             .findById({ _id: userId }).select('myEvents')).myEvents.length;
+//         const pageCount = myEventsCount / limit;
+
+//         res.json({
+//             myEventsList: myEvents,
+//             myEventsCount: myEventsCount,
+//             pageCount,
+//         });
+//     } catch (error) {
+//         res.json({
+//             message: error.message
+//         });
+//     }
+// };
+
+
 
 const deleteMyEvent = async (req, res) => {
     const { eventId } = req.params;
