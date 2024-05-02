@@ -1,7 +1,8 @@
 
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3007/api";
+//const BASE_URL = "http://localhost:3007/api";
+const BASE_URL = "https://events-platform-amlk.onrender.com/api"
 
 export const getEvents = () => {
    return axios.get(`${BASE_URL}/events`).then((response) => {
