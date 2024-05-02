@@ -21,19 +21,19 @@ exports.getToken = async (req, res) => {
 
     const { id } = req.params;
     const event = await Event.findById(id).populate("attendees");
-    console.log(event);
+    console.log("Event>>>>>", event);
 
     const createEvent = {
-      title: event.title,
+      summary: event.title,
       location: event.location,
       description: event.description,
-      startDate: {
+      start: {
         dateTime: event.startDate,
       },
-      endDate: {
+      end: {
         dateTime: event.endDate,
       },
-      
+
       reminders: {
         useDefault: false,
         overrides: [
@@ -52,14 +52,15 @@ exports.getToken = async (req, res) => {
       requestBody: createEvent,
     });
 
-    const googleCalendarEvent = response.data
+    const googleCalendarEvent = response.data;
     console.log("google calendar event", googleCalendarEvent);
 
     if (!googleCalendarEvent) {
-      return res.status(404).send({ message: "google calendar event was not created" });
+      return res
+        .status(404)
+        .send({ message: "google calendar event was not created" });
     }
     res.status(200).send(googleCalendarEvent);
-    
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: error.message });
