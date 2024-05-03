@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { TextInput } from "../TextInput/TextInput";
 import { Select } from "../../components/Login-SignUp/Select";
 import "../TextInput/TextInput.css";
@@ -7,6 +7,7 @@ import { createNewEvent, getCategory } from "../../utils/api";
 import "../TextInput/TextInput.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const CreateEvent = () => {
   const navigate = useNavigate();
   const [dbError, setDbError] = useState("");
@@ -21,6 +22,7 @@ const CreateEvent = () => {
     startDate: "",
     endDate: "",
   });
+  const formRef = useRef(null);
   const [errorFields, setErrorFields] = useState({
     title: false,
     description: false,
@@ -38,7 +40,7 @@ const CreateEvent = () => {
       setCategory(data);
     });
   }, []);
-  console.log("from createEvent.jss, category=", category);
+
   const handleChange = (event) => {
     setFields((prev) => ({
       ...prev,
@@ -48,15 +50,15 @@ const CreateEvent = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("fields from create event", fields);
+
     if (isFormValid()) {
       createNewEvent(fields)
-        .then((response) => {
-          if (response) {
-            setDbError("");
+        .then(() => {
+          
             toast.success("Event created successfully!");
-            //navigate("/");
-          }
+            formRef.current.reset();
+            setDbError("");
+          
         })
         .catch((error) => {
           if (
@@ -64,13 +66,8 @@ const CreateEvent = () => {
             error.response.data &&
             error.response.data.message
           ) {
-            // Check if the error response contains a message
-            console.log("errrrr", error.response.data.message);
             setDbError(error.response.data.message); // Set the error message state
           }
-          // else {
-          //   setErrorMessage('An unexpected error occurred.'); // Set a generic error message
-          // }
         });
     }
     console.log("Invalid");
@@ -117,7 +114,7 @@ const CreateEvent = () => {
 
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} ref={formRef}>
         <h1>Create new event</h1>
         <p className="caption">Please fill the form.</p>
         {dbError && <div className="error">Error signing up</div>}
