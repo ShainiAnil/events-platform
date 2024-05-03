@@ -7,7 +7,6 @@ EventVibe is a full-stack web application built using the MERN (MongoDB, Express
 - **Event Booking**: Members can reserve spots for events they're interested in attending, securing their participation.
 - **Google Calendar Integration**: Users can seamlessly add booked events to their Google Calendar, ensuring they stay organized and never miss an event.
 - **Admin Privileges**: Admins have additional capabilities beyond regular users. They can create new events, manage existing ones, and oversee the overall functioning of the platform.
-<br />
 
 # Local Setup:
 
@@ -18,6 +17,4 @@ EventVibe is a full-stack web application built using the MERN (MongoDB, Express
    - Start the server: `cd server && npm run dev`
    - Start the client: `cd client && npm run dev`
 
-
-<br />
 
