@@ -5,7 +5,7 @@ const Event = require("../model/eventModel.js");
 const oAuth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
-  "http://localhost:5173","https://eventvibe-app.netlify.app/events/:"
+  "http://localhost:5173","https://eventvibe-app.netlify.app/events/"
 );
 
 exports.getToken = async (req, res) => {
