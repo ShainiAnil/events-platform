@@ -9,8 +9,13 @@ const googleAuthRoutes = require("./routes/googleAuth")
 
 require("dotenv").config();
 app.use(express.json());
-app.use(cors());
-
+//app.use(cors());
+app.use(
+   cors({
+     origin: ["http://localhost:5173","https://eventvibe-app.netlify.app"],
+     credentials: true,
+   })
+ );
 
 connectDb();
 app.use("/api/auth",authRoute)
