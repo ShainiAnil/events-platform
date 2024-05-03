@@ -54,9 +54,8 @@ const CreateEvent = () => {
     if (isFormValid()) {
       createNewEvent(fields)
         .then(() => {
-          
-            toast.success("Event created successfully!");
-            formRef.current.reset();
+         
+           
             setDbError("");
           
         })
@@ -70,6 +69,9 @@ const CreateEvent = () => {
           }
         });
     }
+    toast.success("Event created successfully!");
+            formRef.current.reset();
+            setDbError("");
     console.log("Invalid");
   };
 
