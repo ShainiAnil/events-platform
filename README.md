@@ -8,6 +8,14 @@ EventVibe is a full-stack web application built using the MERN (MongoDB, Express
 - **Google Calendar Integration**: Users can seamlessly add booked events to their Google Calendar, ensuring they stay organized and never miss an event.
 - **Admin Privileges**: Admins have additional capabilities beyond regular users. They can create new events, manage existing ones, and oversee the overall functioning of the platform.
 
+<br />
+
+ <a href="https://eventvibe-app.netlify.app/" style="color:green">Client</a>
+
+<a href="https://events-platform-amlk.onrender.com/api/events" style="color:green">Server</a>
+
+
+
 # Local Setup:
 
 1. **Clone the repository**: `git clone https://github.com/ShainiAnil/events-platform.git`
