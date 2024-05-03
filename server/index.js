@@ -10,13 +10,22 @@ const googleAuthRoutes = require("./routes/googleAuth")
 require("dotenv").config();
 app.use(express.json());
 //app.use(cors());
-app.use(
-   cors({
-     origin: ["http://localhost:5173","https://eventvibe-app.netlify.app"],
-     credentials: true,
-   })
- );
+// app.use(
+//    cors({
+//      origin: ["http://localhost:5173","https://eventvibe-app.netlify.app"],
+//      credentials: true,
+//    })
+//  );
+const corsOptions = {
+   origin: ["http://localhost:5173","https://eventvibe-app.netlify.app","https://events-platform-amlk.onrender.com/"], 
+   methods: 'GET,POST,PATCH,DELETE,OPTIONS',
+   allowedHeaders: 'Content-Type,Authorization, Access-Control-Allow-Origin',
+   credentials: true,
+   optionsSuccessStatus: 200
+};
 
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); 
 connectDb();
 app.use("/api/auth",authRoute)
 app.use("/api/events", eventsRoute)
