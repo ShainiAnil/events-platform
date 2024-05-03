@@ -9,13 +9,7 @@ const googleAuthRoutes = require("./routes/googleAuth")
 
 require("dotenv").config();
 app.use(express.json());
-app.use(cors({
-   
-   origin:"https://events-platform-amlk.onrender.com/",
- 
-   credentials : true,
-   
-}));
+app.use(cors());
 
 
 connectDb();
