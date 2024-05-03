@@ -19,7 +19,7 @@ const GoogleCalendar = ({ eventId , setAddedtoCal, addedtoCal}) => {
       });
     },
     flow: "auth-code",
-    scope: "https://www.googleapis.com/auth/calendar",
+    scope: "https://www.googleapis.com/auth/calendar.events",
     onError: (err) => {
       console.log("Login Failed", err);
       alert("Google login failed");
