@@ -18,6 +18,11 @@ export const getCategory = () => {
   });
 }
 
+export const createNewCategory = (addNewCategory) => {
+  return axios.post(`${BASE_URL}/category`, addNewCategory).then((response) => {
+    return response;
+  });
+};
 export const getEventById = (_id) => {
   return axios.get(`${BASE_URL}/events/${_id}`).then((response) => {
     
