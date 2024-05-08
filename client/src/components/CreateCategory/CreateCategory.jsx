@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { TextInput } from "../TextInput/TextInput";
-import { Select } from "../../components/Login-SignUp/Select";
+
 import "../TextInput/TextInput.css";
 import { useNavigate } from "react-router-dom";
 import { createNewCategory} from "../../utils/api";

@@ -54,10 +54,9 @@ const CreateEvent = () => {
     if (isFormValid()) {
       createNewEvent(fields)
         .then(() => {
-         
-           
-            setDbError("");
-          
+          toast.success("Event created successfully!");
+          formRef.current.reset();
+          setDbError("");
         })
         .catch((error) => {
           if (
@@ -69,10 +68,6 @@ const CreateEvent = () => {
           }
         });
     }
-    toast.success("Event created successfully!");
-            formRef.current.reset();
-            setDbError("");
-    console.log("Invalid");
   };
 
   const isFormValid = () => {
@@ -119,7 +114,7 @@ const CreateEvent = () => {
       <form onSubmit={handleSubmit} ref={formRef}>
         <h1>Create new event</h1>
         <p className="caption">Please fill the form.</p>
-        {dbError && <div className="error">Error signing up</div>}
+        {dbError && <div className="error">{dbError}</div>}
         <TextInput
           handleChange={handleChange}
           errorFields={errorFields}
