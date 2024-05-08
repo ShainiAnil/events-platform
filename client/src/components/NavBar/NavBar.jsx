@@ -30,9 +30,15 @@ export const Navbar = () => {
             <NavLink to="/events">Home</NavLink>
           </li>
           {user.role === "admin" && (
+            <>
             <li>
               <NavLink to="/create-event">Create Event</NavLink>
             </li>
+            <li>
+             <NavLink to="/create-category">Create Category</NavLink>
+           </li>
+           </>
+           
           )}
           {user ? (
             <>

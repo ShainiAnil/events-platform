@@ -29,10 +29,13 @@ const CreateCategory = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (isFormValid()) {
+    if (isFormValid()) { 
+    setDbError("");
         createNewCategory(field)
         .then(() => {
           setDbError("");
+          toast.success("Category created successfully!");
+          formRef.current.reset();
         })
         .catch((error) => {
           if (
@@ -44,9 +47,7 @@ const CreateCategory = () => {
           }
         });
     }
-    toast.success("Category created successfully!");
-    formRef.current.reset();
-    setDbError("");
+   
   };
 
   const isFormValid = () => {
@@ -85,7 +86,7 @@ const CreateCategory = () => {
       <form onSubmit={handleSubmit} ref={formRef}>
         <h1>Create new Category</h1>
         <p className="caption">Please fill the form.</p>
-        {dbError && <div className="error">Database error</div>}
+        {dbError && <div className="error">{dbError}</div>}
         <TextInput
           handleChange={handleChange}
           errorFields={errorFields}
