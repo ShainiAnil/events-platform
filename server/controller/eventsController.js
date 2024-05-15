@@ -71,7 +71,7 @@ const addEvents = async (req, res) => {
 const editEvents = async (req, res) => {
     try {
         let updatedEvent;
-        const { eventId, title, description, location, image, category, price, attendees, startDate,endDate } = req.body;
+        const { _id, title, description, location, image, category, price, attendees, startDate,endDate } = req.body;
         const categoryArr = category?.split(",");
         const attendeesArr = attendees?.split(",");
         updatedEvent = {
@@ -91,7 +91,7 @@ const editEvents = async (req, res) => {
             updatedEvent.image = eventImageUrl;
         }
 
-        const isExists = await eventModel.findByIdAndUpdate(eventId, updatedEvent, { new: true });
+        const isExists = await eventModel.findByIdAndUpdate(_id, updatedEvent, { new: true });
         eventEmitter.emit('notifyEvent', {
             id:isExists._id,
             title : isExists.title,
