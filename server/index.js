@@ -18,7 +18,7 @@ app.use(express.json());
 //  );
 const corsOptions = {
    origin: ["http://localhost:5173","https://eventvibe-app.netlify.app","https://events-platform-amlk.onrender.com/"], 
-   methods: 'GET,POST,PATCH,DELETE,OPTIONS',
+   methods: 'GET,POST,PATCH,PUT,DELETE,OPTIONS',
    allowedHeaders: 'Content-Type,Authorization, Access-Control-Allow-Origin',
    credentials: true,
    optionsSuccessStatus: 200
