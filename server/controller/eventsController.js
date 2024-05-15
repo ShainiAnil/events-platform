@@ -73,16 +73,16 @@ const editEvents = async (req, res) => {console.log("server")
         let updatedEvent;
         const { _id, title, description, location, image, category, price, attendees, startDate,endDate } = req.body;
         console.log("from event controller",req.body)
-        const categoryArr = category?.split(",");
-        const attendeesArr = attendees?.split(",");
+        // const categoryArr = category.split(",");
+        // const attendeesArr = attendees.split(",");
         updatedEvent = {
             title: title,
             description: description,
             location:location,
             image:image,
             price:price,
-            attendees:attendeesArr,
-            category: categoryArr,
+            attendees:attendees,
+            category: category,
             startDate:startDate,
             endDate:endDate
         };
