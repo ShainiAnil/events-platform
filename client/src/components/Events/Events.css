@@ -118,9 +118,18 @@ img {
 .card_text .card-info{
   padding-left: 10px;
 }
-.made_by {
-  font-weight: 400;
-  font-size: 13px;
-  margin-top: 35px;
-  text-align: center;
+
+.edit-del{
+  display: flex;
+  gap: 50%;
+  }
+.edit-del button{
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  margin: 5px;
+}
+.edit-del button:focus{
+outline: none;
+box-shadow: 0 0 3px 2px rgba(0, 0, 255, 0.5);
 }

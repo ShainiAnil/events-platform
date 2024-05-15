@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { TextInput } from "../TextInput/TextInput";
 
 import "../TextInput/TextInput.css";
@@ -7,6 +7,7 @@ import { createNewCategory} from "../../utils/api";
 import "../TextInput/TextInput.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UserContext from "../../context/UserContext";
 
 const CreateCategory = () => {
   const navigate = useNavigate();
@@ -18,7 +19,14 @@ const CreateCategory = () => {
   const [errorFields, setErrorFields] = useState({
     category: false,
   });
+  const {user} = useContext(UserContext);
+  useEffect(() => {
+    // Check if user is not logged in, redirect to login page
 
+    if (user.role !== "admin") {
+      navigate("/login");
+    }
+  }, []);
   const handleChange = (event) => {
     setField((prev) => ({
       ...prev,

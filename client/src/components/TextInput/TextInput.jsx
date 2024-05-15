@@ -6,8 +6,8 @@ export const TextInput = ({
   label,
   id,
   name,
-  type
- 
+  type,
+
 }) => {
   return (
     <div className="input-section">

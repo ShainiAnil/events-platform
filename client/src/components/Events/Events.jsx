@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getEvents } from "../../utils/api";
 import { Link } from "react-router-dom";
 import "./Events.css";
-
+import UserContext from "../../context/UserContext";
 export const Events = () => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const {user} = useContext(UserContext)
 
   useEffect(() => {
     setIsLoading(true);
@@ -46,6 +47,11 @@ export const Events = () => {
                     <div className="card_image">
                       <img src={image} />
                     </div>
+                    {user && user.role === 'admin'&&
+                      <div className="edit-del">
+                         <Link to={`/edit-event/${_id}`}><button>✏️</button></Link>
+                         <Link to={`/edit-event/${_id}`}><button>🗑</button></Link>
+                        </div>}
                     <div className="card_content">
                       <h2 className="card_title">{title}</h2>
                       <p className="card_text">@{location}</p>

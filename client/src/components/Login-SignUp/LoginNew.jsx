@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import "../TextInput/TextInput.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, redirect } from "react-router-dom";
 import { login } from "../../utils/api";
 import { TextInput } from "../TextInput/TextInput";
 import { ToastContainer, toast } from "react-toastify";
@@ -30,35 +30,30 @@ const LoginNew = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    
-    
+
     if (isFormValid()) {
       login(fields)
-      .then((response) => {
-        if (response.data) {
-          setDbError("");
-          setUser(response.data)
-         // localStorage.setItem("token", data.accessToken);
-         navigate("/");
-        } 
-       
-      })
-      .catch(error => {
-        if (error.response && error.response.data && error.response.data.message) {
-          // Check if the error response contains a message
-          console.log("errrrr",error.response.data.message);
-          setDbError(error.response.data.message); // Set the error message state
-        }
-        // else {
-        //   setErrorMessage('An unexpected error occurred.'); // Set a generic error message
-        // }
-      });
-      
+        .then((response) => {
+          if (response.data) {
+            setDbError("");
+            setUser(response.data);
+
+            // localStorage.setItem("token", data.accessToken);
+            navigate("/");
+          }
+        })
+        .catch((error) => {
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.message
+          ) {
+            setDbError(error.response.data.message); // Set the error message state
+          }
+        });
     }
-    
-    
-     console.log("Invalid");
-    return
+
+    return;
   };
 
   const isFormValid = () => {
@@ -100,41 +95,32 @@ const LoginNew = () => {
           <p>Sign In</p>
         </div>
         <form className="login-input-container">
+          <TextInput
+            handleChange={handleChange}
+            errorFields={errorFields}
+            label="Email"
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="on"
+          />
+
+          <TextInput
+            handleChange={handleChange}
+            errorFields={errorFields}
+            label="Password"
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="on"
+          />
+
           <div className="input-div">
-            <TextInput
-              handleChange={handleChange}
-              errorFields={errorFields}
-              label="Email"
-              id="email"
-              name="email"
-              type="email"
-              autocomplete="on"
-            />
-          </div>
-          <div className="input-div">
-            <TextInput
-              handleChange={handleChange}
-              errorFields={errorFields}
-              label="Password"
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="on"
-            />
-            <div>
-              <span className="error error-username"></span>
-            </div>
-          </div>
-          <div className="button-div">
             <button type="button" onClick={handleLogin}>
               Sign In
             </button>
           </div>
-          {/* <Link to="/forgotpassword">
-              <div className="forgot-pwd">
-                <p>Forgot Password?</p>
-              </div>
-            </Link> */}
+
           {dbError && <div className="error">{dbError}</div>}
         </form>
         <div className="sign-upnav">

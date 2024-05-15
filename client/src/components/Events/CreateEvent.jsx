@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { TextInput } from "../TextInput/TextInput";
 import { Select } from "../../components/Login-SignUp/Select";
 import "../TextInput/TextInput.css";
@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { createNewEvent, getCategory } from "../../utils/api";
 import "../TextInput/TextInput.css";
 import { ToastContainer, toast } from "react-toastify";
+import UserContext from "../../context/UserContext";
 import "react-toastify/dist/ReactToastify.css";
 
 const CreateEvent = () => {
   const navigate = useNavigate();
   const [dbError, setDbError] = useState("");
+  const { user } = useContext(UserContext);
+
   const [fields, setFields] = useState({
     title: "",
     description: "",
@@ -40,7 +43,13 @@ const CreateEvent = () => {
       setCategory(data);
     });
   }, []);
+  useEffect(() => {
+    // Check if user is not logged in, redirect to login page
 
+    if (user.role !== "admin") {
+      navigate("/login");
+    }
+  }, []);
   const handleChange = (event) => {
     setFields((prev) => ({
       ...prev,

@@ -1,32 +1,29 @@
-
 import axios from "axios";
 
 //const BASE_URL = "http://localhost:3007/api";
-const BASE_URL = "https://events-platform-amlk.onrender.com/api"
+const BASE_URL = "https://events-platform-amlk.onrender.com/api";
 
 export const getEvents = () => {
-   return axios.get(`${BASE_URL}/events`).then((response) => {
-      
-       return response.data.eventList
-   });
-}
+  return axios.get(`${BASE_URL}/events`).then((response) => {
+    return response.data.eventList;
+  });
+};
 
 export const getCategory = () => {
   return axios.get(`${BASE_URL}/categories`).then((response) => {
-     
-      return response.data
+    return response.data;
   });
-}
+};
 
 export const createNewCategory = (addNewCategory) => {
-  return axios.post(`${BASE_URL}/categories`, addNewCategory).then((response) => {
-    console.log("from create category", addNewCategory)
-    return response;
-  });
+  return axios
+    .post(`${BASE_URL}/categories`, addNewCategory)
+    .then((response) => {
+      return response;
+    });
 };
 export const getEventById = (_id) => {
   return axios.get(`${BASE_URL}/events/${_id}`).then((response) => {
-    
     return response.data;
   });
 };
@@ -36,13 +33,17 @@ export const createNewEvent = (addNewEvent) => {
     return response;
   });
 };
-
-export const createNewUser = (addNewUser) => {
-  
-  return axios.post(`${BASE_URL}/auth/register`, addNewUser).then((response) => {
-   
+export const editEvent = (eventData) => {
+  return axios.put(`${BASE_URL}/events`, eventData).then((response) => {
     return response;
   });
+};
+export const createNewUser = (addNewUser) => {
+  return axios
+    .post(`${BASE_URL}/auth/register`, addNewUser)
+    .then((response) => {
+      return response;
+    });
 };
 // export const createNewUser = async (addNewUser) => {
 //   try {
@@ -56,23 +57,20 @@ export const createNewUser = (addNewUser) => {
 // };
 export const login = (formData) => {
   return axios.post(`${BASE_URL}/auth/login`, formData).then((response) => {
-    
-   return response;
- 
+    return response;
   });
 };
 export const myEvents = (formData) => {
-  return axios.post(`${BASE_URL}/auth/myEvents?page=1&limit=10`, formData).then((response) => {
-    
-   return response.data;
- 
-  });
+  return axios
+    .post(`${BASE_URL}/auth/myEvents?page=1&limit=10`, formData)
+    .then((response) => {
+      return response.data;
+    });
 };
-export const addEvent = (formData) => {console.log("hello it's me addEvent", formData)
+export const addEvent = (formData) => {
+  console.log("hello it's me addEvent", formData);
   return axios.post(`${BASE_URL}/auth/addEvent`, formData).then((response) => {
-    
-   return response.data;
- 
+    return response.data;
   });
 };
 export const updateAttending = (_id, user) => {

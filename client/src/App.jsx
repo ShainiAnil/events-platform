@@ -13,6 +13,7 @@ import CreateEvent from "./components/Events/CreateEvent";
 import Footer from "./components/Footer/Footer";
 import MyEvents from "./components/Events/MyEvents";
 import CreateCategory from "./components/CreateCategory/CreateCategory";
+import EditEvent from "./components/Events/EditEvent";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/login" element={<LoginNew />} />
           <Route path="/events/:_id" element={<EventCard />} />
           <Route path="/create-event" element={<CreateEvent />} />
+          <Route path="/edit-event/:_id" element={<EditEvent/>} />
           <Route path="/create-category" element={<CreateCategory />} />
           <Route path="/my-events" element={<MyEvents />} />
         </Routes>
