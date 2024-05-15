@@ -68,10 +68,11 @@ const addEvents = async (req, res) => {
 };
 
 // Edit Events in Events collection based on ID
-const editEvents = async (req, res) => {
+const editEvents = async (req, res) => {console.log("server")
     try {
         let updatedEvent;
         const { _id, title, description, location, image, category, price, attendees, startDate,endDate } = req.body;
+        console.log("from event controller",req.body)
         const categoryArr = category?.split(",");
         const attendeesArr = attendees?.split(",");
         updatedEvent = {
