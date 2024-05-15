@@ -86,11 +86,11 @@ const editEvents = async (req, res) => {console.log("server")
             startDate:startDate,
             endDate:endDate
         };
-
-        if (res.locals.eventImageData) {
-            const eventImageUrl = res.locals.eventImageData?.secure_url;
-            updatedEvent.image = eventImageUrl;
-        }
+        console.log("updated event=>",updatedEvent)
+        // if (res.locals.eventImageData) {
+        //     const eventImageUrl = res.locals.eventImageData?.secure_url;
+        //     updatedEvent.image = eventImageUrl;
+        // }
 
         const isExists = await eventModel.findByIdAndUpdate(_id, updatedEvent, { new: true });
         eventEmitter.emit('notifyEvent', {
