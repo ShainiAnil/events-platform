@@ -33,8 +33,9 @@ export const createNewEvent = (addNewEvent) => {
     return response;
   });
 };
-export const editEvent = (eventData) => {
-  return axios.put(`${BASE_URL}/events`, eventData).then((response) => {
+export const editEvent = (eventData) => { console.log("ippol:",eventData)
+  return axios.put(`${BASE_URL}/events`, eventData)
+  .then((response) => {console.log("hi")
     return response;
   });
 };

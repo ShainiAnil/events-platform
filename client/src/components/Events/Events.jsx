@@ -49,8 +49,8 @@ export const Events = () => {
                     </div>
                     {user && user.role === 'admin'&&
                       <div className="edit-del">
+                         <Link to={`/edit-event/${_id}`}><button></button></Link>
                          <Link to={`/edit-event/${_id}`}><button>✏️</button></Link>
-                         <Link to={`/edit-event/${_id}`}><button>🗑</button></Link>
                         </div>}
                     <div className="card_content">
                       <h2 className="card_title">{title}</h2>

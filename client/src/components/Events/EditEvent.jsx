@@ -9,23 +9,25 @@ import { ToastContainer, toast } from "react-toastify";
 import UserContext from "../../context/UserContext";
 import "react-toastify/dist/ReactToastify.css";
 
+const initialFieldsState = {
+  title: "",
+  description: "",
+  location: "",
+  image: "",
+  category: "",
+  price: "",
+  startDate: "",
+  endDate: "",
+};
+
+
 const EditEvent = () => {
   const navigate = useNavigate();
   const [dbError, setDbError] = useState("");
   const { user } = useContext(UserContext);
   const { _id } = useParams();
   const [event, setEvent] = useState({});
-  const [fields, setFields] = useState({
-    title: "",
-    description: "",
-    location: "",
-    image: "",
-    category: "",
-    price: "",
-
-    startDate: "",
-    endDate: "",
-  });
+  const [fields, setFields] = useState(initialFieldsState);
   const formRef = useRef(null);
   const [errorFields, setErrorFields] = useState({
     title: false,
@@ -83,10 +85,11 @@ const EditEvent = () => {
             eventId:_id,
             ...prev
         }))
-      console.log("Puthiyathu ", fields);
+      
        editEvent(fields)
         .then(() => {
           toast.success("Event created successfully!");
+          setFields(initialFieldsState)
           formRef.current.reset();
           setDbError("");
         })
