@@ -50,7 +50,7 @@ const EditEvent = () => {
       setFields(data);
     });
   }, []);
-
+console.log("category ===", fields.category)
   //   useEffect(() => {
   //     // Check if user is not logged in, redirect to login page
 

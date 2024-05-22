@@ -17,6 +17,14 @@
   font-size: 18px;
   color: dodgerblue;
   padding: 4% 15%;
+  
+}
+.isLoading img{
+  width : 60px;
+  height: 60px;
+  filter: sepia(1) saturate(1000%) hue-rotate(185deg) brightness(0.6);
+  /* filter: sepia(1) saturate(8000%) hue-rotate(185deg) brightness(0.6); */
+  filter: invert(86%) sepia(9%) saturate(3860%) hue-rotate(192deg) brightness(92%) contrast(91%);
 }
 .main {
   max-width: 1200px;

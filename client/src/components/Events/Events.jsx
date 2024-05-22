@@ -13,14 +13,15 @@ export const Events = () => {
     getEvents().then((data) => {
       setEvents(data);
     });
-    console.log("from event.jss", events.length);
+   
     setIsLoading(false);
   }, []);
 
   if (events.length === 0)
     return (
       <div className="isLoading">
-        <p>Loading...</p>
+        {/* <p>Loading...</p> */}
+        <img src="./spinner.svg" alt="spinner-loading"/>
       </div>
     );
 

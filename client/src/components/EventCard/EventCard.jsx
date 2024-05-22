@@ -35,7 +35,8 @@ export const EventCard = () => {
   if (isLoading)
     return (
       <div className="isLoading">
-        <p>Loading...</p>
+        {/* <p>Loading...</p> */}
+        <img src="../spinner.svg" alt="spinner-loading"/>
       </div>
     );
   const handleClick = () => {
